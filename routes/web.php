@@ -24,7 +24,7 @@ Route::namespace('Users')->group(function () {
     Route::post('/users/register', 'RegisterController@register');
 });
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth.basic')->group(function() {
     Route::get('/', function () {
         return view('index');
     })->name('index');

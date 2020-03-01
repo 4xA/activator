@@ -14,7 +14,7 @@ class AddEmailTokenColToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('email_token')->after('password');
+            $table->string('email_token')->nullable()->after('password');
         });
     }
 
