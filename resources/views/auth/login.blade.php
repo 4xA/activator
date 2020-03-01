@@ -28,7 +28,12 @@
                     </div>
                 </div>
                 <div class="uk-form-row uk-clearfix">
-                    <button type="submit" class="uk-button uk-button-primary uk-align-right">Login</button>
+                    <div class="uk-form-controls uk-form-controls-text">
+                        <label>
+                            <input type="checkbox" name="remember_me"> Remember Me
+                        </label>
+                        <button type="submit" class="uk-button uk-button-primary uk-align-right">Login</button>
+                    </div>
                 </div>
             </form>
         </div>

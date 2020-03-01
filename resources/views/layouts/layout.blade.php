@@ -7,6 +7,7 @@
     <title>Activator - @yield('title', 'Remote Switch')</title>
     <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="packages/uikit/css/uikit.min.css"/>
+    <link rel="stylesheet" href="packages/uikit/css/components/form-advanced.min.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="packages/jquery/js/jquery.min.js"></script>
     <script src="packages/uikit/js/uikit.min.js"></script>

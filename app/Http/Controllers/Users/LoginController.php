@@ -18,6 +18,8 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
+        $rememberMe = $request->has('remember_me') && $request->remember_me == 'on';
+
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
             return $this->sendLockoutResponse($request);
@@ -25,7 +27,7 @@ class LoginController extends Controller
 
         $credentials = $request->only('username', 'password');
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $rememberMe)) {
             $this->clearLoginAttempts($request);
             return redirect()->intended('home');
         } 
