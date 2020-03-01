@@ -13,7 +13,7 @@
     <div class="auth-panel uk-container-center uk-vertical-align">
         <div class="uk-panel uk-panel-box uk-vertical-align-middle uk-width-1-1">
             <h1 class="uk-penel-title uk-text-center uk-text-uppercase">Login</h1>
-            <form action="/login" method="post" class="uk-form uk-form-stacked">
+            <form action="/users/login" method="post" class="uk-form uk-form-stacked">
                 {{ csrf_field() }}
                 <div class="uk-form-row">
                     <label for="username" class="uk-form-label">Username</label>
@@ -36,6 +36,7 @@
                     </div>
                 </div>
             </form>
+            <a href="{{ route('users.login.key') }}">Have a user key?</a>
         </div>
     </div>
 @endsection

@@ -13,7 +13,7 @@
     <div class="auth-panel uk-container-center uk-vertical-align">
         <div class="uk-panel uk-panel-box uk-vertical-align-middle uk-width-1-1">
             <h1 class="uk-penel-title uk-text-center uk-text-uppercase">Register</h1>
-            <form action="/register" method="post" class="uk-form uk-form-stacked">
+            <form action="/users/register" method="post" class="uk-form uk-form-stacked">
                 {{ csrf_field() }}
                 <div class="uk-form-row">
                     <label for="first_name" class="uk-form-label">First Name</label>

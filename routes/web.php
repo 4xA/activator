@@ -13,13 +13,14 @@
 
 Route::namespace('Users')->group(function () {
     // LOGIN
-    Route::get('/login', 'LoginController@showLoginForm')->name('login');
-    Route::post('/login', 'LoginController@authenticate');
+    Route::get('/users/login', 'LoginController@showLoginForm')->name('users.login');
+    Route::post('/users/login', 'LoginController@authenticate');
+    Route::get('/users/key', 'LoginController@showKeyLoginForm')->name('users.login.key');
     // LOGOUT
-    Route::post('/logout', 'LoginController@logout')->name('logout');
+    Route::post('/users/logout', 'LoginController@logout')->name('users.logout');
     // REGISTER
-    Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
-    Route::post('/register', 'RegisterController@register');
+    Route::get('/users/register', 'RegisterController@showRegistrationForm')->name('users.register');
+    Route::post('/users/register', 'RegisterController@register');
 });
 
 Route::middleware('auth')->group(function() {

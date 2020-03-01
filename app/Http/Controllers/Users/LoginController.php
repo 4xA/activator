@@ -36,6 +36,11 @@ class LoginController extends Controller
         return $this->showLoginForm();
     }
 
+    public function showKeyLoginForm()
+    {
+        return 'form';
+    }
+
     public function logout()
     {
         Auth::logout();
