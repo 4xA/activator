@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </form>
-            <a href="{{ route('users.login.key') }}">Have a user key?</a>
+            <a href="{{ route('users.login.token') }}">Have an emailed key?</a>
         </div>
     </div>
 @endsection

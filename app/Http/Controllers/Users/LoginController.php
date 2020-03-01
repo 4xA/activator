@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function authenticate(Request $request)
+    public function authenticate(Request $request, bool $key = false)
     {
         $rememberMe = $request->has('remember_me') && $request->remember_me == 'on';
 
@@ -25,20 +26,32 @@ class LoginController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        $credentials = $request->only('username', 'password');
+        $auth = false;
+        if ($key) {
+            $auth = User::where('email_token', $request->email_token)->first();
+            if ($auth) Auth::login($auth);
+        } else {
+            $credentials = $request->only('username', 'password');
+            $auth = Auth::attempt($credentials, $rememberMe);
+        }
 
-        if (Auth::attempt($credentials, $rememberMe)) {
+        if ($auth) {
             $this->clearLoginAttempts($request);
             return redirect()->intended('home');
-        } 
+        }
 
         $this->incrementLoginAttempts($request);
         return $this->showLoginForm();
     }
 
-    public function showKeyLoginForm()
+    public function showTokenLoginForm()
     {
-        return 'form';
+        return view('auth.login_token');
+    }
+
+    public function tokenLogin(Request $request)
+    {
+        return $this->authenticate($request, true);
     }
 
     public function logout()

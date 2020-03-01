@@ -15,7 +15,8 @@ Route::namespace('Users')->group(function () {
     // LOGIN
     Route::get('/users/login', 'LoginController@showLoginForm')->name('users.login');
     Route::post('/users/login', 'LoginController@authenticate');
-    Route::get('/users/key', 'LoginController@showKeyLoginForm')->name('users.login.key');
+    Route::get('/users/login/token', 'LoginController@showTokenLoginForm')->name('users.login.token');
+    Route::post('/users/login/token', 'LoginController@tokenLogin');
     // LOGOUT
     Route::post('/users/logout', 'LoginController@logout')->name('users.logout');
     // REGISTER
