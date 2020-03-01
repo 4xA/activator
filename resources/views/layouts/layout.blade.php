@@ -19,13 +19,13 @@
         <div class="uk-navbar-content uk-navbar-flip">
             @if (\Auth::check())
                 <a id="logout-button" class="uk-button uk-button-danger">Logout</a>
-                <form id="logout-form" action="{{ route('users.logout') }}" method="post" class="uk-hidden">
+                <form id="logout-form" action="{{ route('logout') }}" method="post" class="uk-hidden">
                     @csrf
                     <input class="uk-button uk-button-danger" type="submit" value="Logout">
                 </form>
             @else
-                <a href="{{ route('users.register') }}" class="uk-button uk-button-danger">Register</a>
-                <a href="{{ route('users.login') }}" class="uk-button uk-button-primary">Login</a>
+                <a href="{{ route('register') }}" class="uk-button uk-button-danger">Register</a>
+                <a href="{{ route('login') }}" class="uk-button uk-button-primary">Login</a>
             @endif
         </div>
     </nav>

@@ -13,18 +13,18 @@
 
 Route::namespace('Users')->group(function () {
     // LOGIN
-    Route::get('/users/login', 'LoginController@showLoginForm')->name('users.login');
+    Route::get('/users/login', 'LoginController@showLoginForm')->name('login');
     Route::post('/users/login', 'LoginController@authenticate');
-    Route::get('/users/login/token', 'LoginController@showTokenLoginForm')->name('users.login.token');
+    Route::get('/users/login/token', 'LoginController@showTokenLoginForm')->name('login.token');
     Route::post('/users/login/token', 'LoginController@tokenLogin');
     // LOGOUT
-    Route::post('/users/logout', 'LoginController@logout')->name('users.logout');
+    Route::post('/users/logout', 'LoginController@logout')->name('logout');
     // REGISTER
-    Route::get('/users/register', 'RegisterController@showRegistrationForm')->name('users.register');
+    Route::get('/users/register', 'RegisterController@showRegistrationForm')->name('register');
     Route::post('/users/register', 'RegisterController@register');
 });
 
-Route::middleware('auth.basic')->group(function() {
+Route::middleware('auth')->group(function() {
     Route::get('/', function () {
         return view('index');
     })->name('index');
