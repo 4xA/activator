@@ -11,15 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
 Route::namespace('Users')->group(function () {
-    Route::get('/login')->name('login');
-
+    // LOGIN
+    Route::get('/login', 'LoginController@showLoginForm')->name('login');
+    Route::post('/login', 'LoginController@authenticate');
+    // LOGOUT
+    Route::post('/logout', 'LoginController@logout')->name('logout');
+    // REGISTER
     Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
     Route::post('/register', 'RegisterController@register');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware('auth')->group(function() {
+    Route::get('/', function () {
+        return view('index');
+    })->name('index');
+    Route::get('/home', 'HomeController@index')->name('home');
+});

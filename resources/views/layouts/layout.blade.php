@@ -16,14 +16,31 @@
     <nav class="uk-navbar">
         <a href="/" class="uk-navbar-brand uk-text-uppercase"><i class="uk-icon-plug"></i> activator</a>
         <div class="uk-navbar-content uk-navbar-flip">
-            <a href="{{ route('register') }}" class="uk-button uk-button-danger">Register</a>
-            <a href="{{ route('login') }}" class="uk-button uk-button-primary">Login</a>
+            @if (\Auth::check())
+                <a id="logout-button" class="uk-button uk-button-danger">Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="post" class="uk-hidden">
+                    @csrf
+                    <input class="uk-button uk-button-danger" type="submit" value="Logout">
+                </form>
+            @else
+                <a href="{{ route('register') }}" class="uk-button uk-button-danger">Register</a>
+                <a href="{{ route('login') }}" class="uk-button uk-button-primary">Login</a>
+            @endif
         </div>
     </nav>
 
     <div id="main-content-container" class="uk-container">
         @yield('content')
     </div>
+
     @yield('scripts')
+
+    <script>
+        $(document).ready(function() {
+            $('#logout-button').click(function() {
+                $('#logout-form').submit();
+            });
+        });
+    </script>
 </body>
 </html>
