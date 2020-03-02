@@ -15,8 +15,8 @@ class SendEmailVerficationNotification
 
     public function handle(UserRegistered $event)
     {
-        logger('User has registerd');
         $name = $event->user->first_name . " " . $event->user->last_name;
-        logger("user name is $name");
+        $username = $event->user->username;
+        logger("New user registered ({$name}) with the username {$username}");
     }
 }
