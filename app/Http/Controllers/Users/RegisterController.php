@@ -25,6 +25,8 @@ class RegisterController extends Controller
     {
         $user = $this->create($request->all());
         event(new UserRegistered($user));
+
+        return redirect()->route('login');
     }
 
     protected function create(array $data)
