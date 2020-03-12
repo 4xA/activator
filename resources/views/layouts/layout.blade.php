@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <script src="{{ asset('packages/jquery/js/jquery.min.js') }}"></script>
     <script src="{{ asset('packages/uikit/js/uikit.min.js') }}"></script>
-    @yield('style')
+    @yield('styles')
 </head>
 <body>
     <nav class="uk-navbar">
