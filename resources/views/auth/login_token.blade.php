@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.auth')
 
 @section('title') Email Token Login @endsection
 
