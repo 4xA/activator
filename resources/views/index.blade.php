@@ -5,15 +5,18 @@
 @endsection
 
 @section('content')
-    <div class="uk-grid">
+    <div class="uk-grid uk-grid-small" data-uk-grid-margin>
         @foreach (\Auth::user()->devices as $device)
-            <div class="device-panel uk-panel uk-panel-box uk-panel-box-primary uk-width-1-4 uk-margin-top uk-margin-left">
-                <h3 class="uk-penel-title uk-text-center uk-text-uppercase">{{ $device->name }}</h3>
+            <div class="uk-width-1-4">
+                <div class="device-panel uk-panel uk-panel-box uk-panel-box-primary">
+                    <h3 class="uk-penel-title uk-text-center uk-text-uppercase">{{ $device->name }}</h3>
+                </div>
             </div>
         @endforeach
-
-            <a href="{{ route('device.create') }}" id="device-panel-add" class="device-panel uk-panel uk-panel-box uk-panel-box-primary uk-width-1-4 uk-margin-top uk-margin-left uk-vertical-align">
+        <div class="uk-width-1-4">
+            <a href="{{ route('device.create') }}" id="device-panel-add" class="uk-height-1-1 device-panel uk-panel uk-panel-box uk-panel-box-primary uk-vertical-align">
                 <div class="uk-vertical-align-middle uk-text-center uk-width-1-1"><i class="uk-icon-plus-circle uk-icon-large"></i></div>
             </a>
+        </div>
     </div>
 @endsection
