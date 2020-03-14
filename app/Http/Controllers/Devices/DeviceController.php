@@ -27,6 +27,11 @@ class DeviceController extends Controller
      */
     public function store(DeviceRequest $request)
     {
+        $data = $request->validated();
+        $data['user_id'] = \Auth::user()->id;
+        Device::create($data);
+
+        return redirect()->route('index');
     }
 
     /**
@@ -48,7 +53,7 @@ class DeviceController extends Controller
      */
     public function edit(Device $device)
     {
-        //
+        return view('devices.edit', compact('device'));
     }
 
     /**
@@ -58,9 +63,18 @@ class DeviceController extends Controller
      * @param  \App\Device  $device
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Device $device)
+    public function update(DeviceRequest $request, Device $device)
     {
-        //
+        if (strtolower($request->input('action')) === "delete") {
+            return $this->destroy($device);
+        }
+
+        $data = $request->validated();
+        $data['user_id'] = \Auth::user()->id;
+
+        $device->update($data);
+
+        return redirect()->route('index');
     }
 
     /**
@@ -71,6 +85,7 @@ class DeviceController extends Controller
      */
     public function destroy(Device $device)
     {
-        //
+        $device->delete();
+        return redirect()->route('index');
     }
 }

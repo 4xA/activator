@@ -24,15 +24,15 @@ Route::namespace('Users')->group(function () {
     Route::post('/users/register', 'RegisterController@register');
 });
 
-Route::namespace('Devices')->group(function() {
-    Route::resource('device', 'DeviceController')->except(['index']);
-});
-
 Route::middleware('auth')->group(function() {
     Route::get('/', function () {
         return view('index');
     })->name('index');
     Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::namespace('Devices')->group(function() {
+        Route::resource('device', 'DeviceController')->except(['index']);
+    });
 });
 
 Route::get('/fun', 'MiscController@fun');

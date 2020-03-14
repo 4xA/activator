@@ -36,6 +36,13 @@ class DeviceRequest extends FormRequest
         ];
     }
 
+    public function attributes()
+    {
+        return [
+            'name' => 'device name'
+        ];
+    }
+
     public function withValidator($validator)
     {
         $validator->after(function($validator) {

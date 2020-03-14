@@ -10,6 +10,11 @@
             <div class="uk-width-1-4">
                 <div class="device-panel uk-panel uk-panel-box uk-panel-box-primary">
                     <h3 class="uk-penel-title uk-text-center uk-text-uppercase">{{ $device->name }}</h3>
+                    <div class="uk-height-1-1 uk-vertical-align device-panel-buttons">
+                        <div class="uk-vertical-align-bottom uk-width-1-1">
+                            <a href="{{ route('device.edit', compact('device')) }}" class="uk-button uk-button-danger uk-float-right">Edit</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         @endforeach
