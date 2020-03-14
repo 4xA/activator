@@ -35,4 +35,8 @@ Route::middleware('auth')->group(function() {
     });
 });
 
-Route::get('/fun', 'MiscController@fun');
+Route::prefix('misc')->group(function() {
+    Route::get('/fun/{times?}', 'MiscController@fun');
+    Route::get('/cookies', 'MiscController@cookies')->name('misc.cookies');
+    Route::post('/cookies/create', 'MiscController@createCookie')->name('misc.cookies.create');
+});
