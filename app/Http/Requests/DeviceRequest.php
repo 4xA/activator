@@ -24,8 +24,13 @@ class DeviceRequest extends FormRequest
      */
     public function rules()
     {
+        if (strtolower($this->input('action')) === "delete") {
+            return [];
+        }
+
         return [
-            'name' => 'string|max:255'
+            'name' => 'string|max:255',
+            'image' => 'image',
         ];
     }
 

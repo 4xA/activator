@@ -29,7 +29,20 @@ class DeviceController extends Controller
     {
         $data = $request->validated();
         $data['user_id'] = \Auth::user()->id;
-        Device::create($data);
+
+        $device = Device::create($data);
+
+        if ($request->hasFile('image')) {
+            $id = $device->id;
+            $upload = $request->file('image');
+            $extention = $upload->extension();
+            $path = $upload->storeAs("devices/$id/images", "device_image.$extention", 'public');
+
+            $data['image_path'] = $path;
+        }
+
+
+        $device->update($data);
 
         return redirect()->route('index');
     }
@@ -71,6 +84,18 @@ class DeviceController extends Controller
 
         $data = $request->validated();
         $data['user_id'] = \Auth::user()->id;
+
+        if ($request->hasFile('image')) {
+            $id = $device->id;
+            $upload = $request->file('image');
+            $extention = $upload->extension();
+            $path = $upload->storeAs("devices/$id/images", "device_image.$extention", 'public');
+
+            $data['image_path'] = $path;
+
+            logger($request->file('image')->path());
+            logger($request->file('image')->extension());
+        }
 
         $device->update($data);
 

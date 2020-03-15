@@ -10,7 +10,7 @@
         @endforeach
     @endif
     <h1 class="">Create Device</h1>
-    <form action="{{ route('device.store') }}" method="post" class="uk-form">
+    <form action="{{ route('device.store') }}" method="post" class="uk-form" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="uk-form-row">
             <label for="name" class="uk-form-label">Name</label>
@@ -18,6 +18,13 @@
                 <input type="text" name="name" class="uk-width-1-2" value="{{ old('name') }}">
             </div>
         </div>
+        <div class="uk-form-row">
+            <label for="image" class="uk-form-label">Image</label>
+            <div class="uk-form-controls">
+                <input type="file" name="image" class="uk-width-1-2" value="{{ old('file') }}">
+            </div>
+        </div>
+     
         <div class="uk-form-row">
             <div class="uk-form-controls">
                 <input type="submit" value="Create" class="uk-button">
