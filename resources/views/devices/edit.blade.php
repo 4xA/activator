@@ -9,7 +9,7 @@
             </div>
         @endforeach
     @endif
-    <h1 class="">Update Device</h1>
+    <h1 class="">Edit Device</h1>
     <form action="{{ route('device.update', compact('device')) }}" method="post" class="uk-form" enctype="multipart/form-data">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}

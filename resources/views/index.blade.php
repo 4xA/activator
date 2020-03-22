@@ -26,3 +26,11 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    @if (session('status'))
+        <script>
+            UIkit.notify("{{ session('status') }}", {status:'danger'});
+        </script>
+    @endif
+@endsection
