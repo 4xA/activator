@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-class MiscController extends Controller
+class MiscController
 {
     public function fun(Request $request)
     {

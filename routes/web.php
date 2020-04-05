@@ -22,16 +22,19 @@ Route::namespace('Users')->group(function () {
     // REGISTER
     Route::get('/users/register', 'RegisterController@showRegistrationForm')->name('register');
     Route::post('/users/register', 'RegisterController@register');
+    // API
 });
 
+
 Route::middleware('auth')->group(function() {
-    Route::get('/', function () {
-        return view('index');
-    })->name('index');
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('index');
+    Route::get('/home', 'HomeController')->name('home');
 
     Route::namespace('Devices')->group(function() {
-        Route::resource('device', 'DeviceController')->except(['index']);
+        Route::get('precede', 'DeviceController@precede');
+        Route::resource('device', 'DeviceController')->except(['index'])->names([
+            'show' => 'devices.preview'
+        ]);
     });
 });
 

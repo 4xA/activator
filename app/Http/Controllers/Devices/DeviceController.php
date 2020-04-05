@@ -9,6 +9,22 @@ use App\Http\Requests\DeviceRequest;
 
 class DeviceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('log')->except(['create', 'show', 'edit']);
+        $this->middleware(function($request, \Closure $next) {
+            if (\strtolower(\Auth::user()->first_name) == 'bob') {
+                return redirect()->route('index')->with('status', 'We do not serve Bobs around here.');
+            }
+            return $next($request);
+        });
+    }
+
+    public function precede()
+    {
+        return redirect()->route('index')->with('status', 'A preceding route to resource');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

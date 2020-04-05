@@ -23,7 +23,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Route::resourceVerbs([
+            'create' => 'ishnaa',
+        ]);
 
         parent::boot();
     }

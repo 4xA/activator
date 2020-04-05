@@ -38,7 +38,7 @@ class LoginController extends Controller
         if ($auth) {
             $this->clearLoginAttempts($request);
             // Auth::logoutOtherDevices($request->password);
-            return redirect()->intended('/');
+            return redirect()->intended('index');
         }
 
         $this->incrementLoginAttempts($request);
