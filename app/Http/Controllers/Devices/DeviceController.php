@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Devices;
 
 use App\Device;
-use Illuminate\Http\Request;
+use App\DeviceType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DeviceRequest;
 
@@ -32,7 +32,8 @@ class DeviceController extends Controller
      */
     public function create()
     {
-        return view('devices.create');
+        $types = DeviceType::orderBy('name')->get();
+        return view('devices.create', compact('types'));
     }
 
     /**
@@ -82,7 +83,8 @@ class DeviceController extends Controller
      */
     public function edit(Device $device)
     {
-        return view('devices.edit', compact('device'));
+        $types = DeviceType::orderBy('name')->get();
+        return view('devices.edit', compact('device', 'types'));
     }
 
     /**

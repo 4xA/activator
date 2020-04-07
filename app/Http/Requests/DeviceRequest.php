@@ -29,6 +29,7 @@ class DeviceRequest extends FormRequest
         }
 
         return [
+            'type_id' => 'required|exists:device_types,id',
             'name' => 'string|max:255',
             'image' => 'image',
         ];

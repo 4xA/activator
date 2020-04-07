@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 class Device extends Model
 {
     protected $fillable = [
+        'type_id',
         'user_id',
         'name',
         'image_path'
@@ -21,5 +22,10 @@ class Device extends Model
     public function getImageAttribute()
     {
         return Storage::url($this->image_path);
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(DeviceType::class, 'type_id');
     }
 }

@@ -41,7 +41,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        $this->mapAdminRoutes();
     }
 
     /**
@@ -53,7 +53,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web')
+        Route::domain(env('APP_DOMAIN', 'activator.com'))
+             ->middleware('web')
              ->namespace($this->namespace)
              ->group(base_path('routes/web.php'));
     }
@@ -67,9 +68,19 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        Route::prefix('api')
+        Route::domain(env('API_DOMAIN', 'api.activator.com'))
+             ->prefix('api')
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
+    }
+
+    protected function mapAdminRoutes()
+    {
+        $domain = env('APP_DOMAIN', 'activator.com');
+        Route::domain("admin.$domain")
+             ->middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/admin.php'));
     }
 }

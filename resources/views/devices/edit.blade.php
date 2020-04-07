@@ -13,6 +13,11 @@
     <form action="{{ route('device.update', compact('device')) }}" method="post" class="uk-form" enctype="multipart/form-data">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
+        <select name="type_id" class="uk-width-1-2">
+            @foreach ($types as $type)
+                <option value="{{ $type->id }}" @if($type->id === @$device->type->id) selected @endif>{{ $type->name }}</option>
+            @endforeach
+        </select>
         <div class="uk-form-row">
             <label for="name" class="uk-form-label">Name</label>
             <div class="uk-form-controls">

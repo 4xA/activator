@@ -13,6 +13,16 @@
     <form action="{{ route('device.store') }}" method="post" class="uk-form" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="uk-form-row">
+            <label for="type_id" class="uk-form-label">Type</label>
+            <div class="uk-form-controls">
+                <select name="type_id" class="uk-width-1-2">
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="uk-form-row">
             <label for="name" class="uk-form-label">Name</label>
             <div class="uk-form-controls">
                 <input type="text" name="name" class="uk-width-1-2" value="{{ old('name') }}">

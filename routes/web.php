@@ -18,7 +18,7 @@ Route::namespace('Users')->group(function () {
     Route::get('/users/login/token', 'LoginController@showTokenLoginForm')->name('login.token');
     Route::post('/users/login/token', 'LoginController@tokenLogin');
     // LOGOUT
-    Route::post('/users/logout', 'LoginController@logout')->name('logout');
+    Route::any('/users/logout', 'LoginController@logout')->name('logout');
     // REGISTER
     Route::get('/users/register', 'RegisterController@showRegistrationForm')->name('register');
     Route::post('/users/register', 'RegisterController@register');
@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function() {
     });
 });
 
-Route::prefix('misc')->group(function() {
+Route::group(['prefix' => 'misc'], function() {
     Route::get('/fun/{times?}', 'MiscController@fun');
     Route::get('/cookies', 'MiscController@cookies')->name('misc.cookies');
     Route::post('/cookies/create', 'MiscController@createCookie')->name('misc.cookies.create');
