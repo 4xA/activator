@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\DeviceType;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,9 +24,17 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Route::resourceVerbs([
+        Route::resourceVerbs([
             'create' => 'ishnaa',
         ]);
+
+        // Route::model('type', DeviceType::class);
+        Route::bind('type', function ($value) {
+            if ($value == "doabarrelroll") {
+                abort(500);
+            }
+            return DeviceType::where('name', $value)->first();
+        });
 
         parent::boot();
     }

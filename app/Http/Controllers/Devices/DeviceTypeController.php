@@ -75,12 +75,12 @@ class DeviceTypeController extends Controller
      * @param  \App\DeviceType  $deviceType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DeviceType $deviceType)
+    public function update(Request $request, $deviceType)
     {
         $validator = Validator::make($request->all(), ['name' => 'required']);
         $validator->validate();
 
-        DeviceType::update($request->all());
+        $deviceType::update($request->all());
 
         return redirect()->route('devices.types.index');
     }

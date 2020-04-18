@@ -28,4 +28,9 @@ class Device extends Model
     {
         return $this->belongsTo(DeviceType::class, 'type_id');
     }
+
+    public function resolveRouteBinding($value)
+    {
+        return $this->where('id', $value)->first();
+    }
 }
