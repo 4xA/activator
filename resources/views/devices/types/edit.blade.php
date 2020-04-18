@@ -9,18 +9,18 @@
             </div>
         @endforeach
     @endif
-    <h1 class="">Create Device Type</h1>
-    <form action="{{ route('devices.types.store') }}" method="post" class="uk-form">
-        {{ csrf_field() }}
+    <h1 class="">Update Device Type</h1>
+    <form action="{{ route('devices.types.update', $type) }}" method="post" class="uk-form">
+        @csrf
         <div class="uk-form-row">
             <label for="name" class="uk-form-label">Name</label>
             <div class="uk-form-controls">
-                <input type="text" name="name" class="uk-width-1-2" value="{{ old('name') }}">
+                <input type="text" name="name" class="uk-width-1-2" value="{{ old('name', $type->name) }}">
             </div>
         </div>
         <div class="uk-form-row">
             <div class="uk-form-controls">
-                <input type="submit" value="Create" class="uk-button">
+                <input type="submit" value="Update" class="uk-button">
             </div>
         </div>
     </form>

@@ -14,4 +14,9 @@ class DeviceType extends Model
     {
         return $this->hasMany(Device::class, 'type_id');
     }
+
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
 }

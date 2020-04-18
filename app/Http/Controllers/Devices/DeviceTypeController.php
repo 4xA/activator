@@ -16,7 +16,8 @@ class DeviceTypeController extends Controller
      */
     public function index()
     {
-        //
+        $deviceTypes = DeviceType::all();
+        return view('devices.types.index', compact('deviceTypes'));
     }
 
     /**
@@ -62,9 +63,9 @@ class DeviceTypeController extends Controller
      * @param  \App\DeviceType  $deviceType
      * @return \Illuminate\Http\Response
      */
-    public function edit(DeviceType $deviceType)
+    public function edit(DeviceType $type)
     {
-        //
+        return view('devices.types.edit', compact('type'));
     }
 
     /**
@@ -76,7 +77,12 @@ class DeviceTypeController extends Controller
      */
     public function update(Request $request, DeviceType $deviceType)
     {
-        //
+        $validator = Validator::make($request->all(), ['name' => 'required']);
+        $validator->validate();
+
+        DeviceType::update($request->all());
+
+        return redirect()->route('devices.types.index');
     }
 
     /**

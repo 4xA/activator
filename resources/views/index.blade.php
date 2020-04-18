@@ -13,6 +13,7 @@
                         <a href="{{ route('device.edit', compact('device')) }}" class="uk-button uk-button-danger uk-button-mini">Edit</a>
                     </div>
                     <h3 class="uk-panel-title uk-text-center uk-text-uppercase">{{ $device->name }}</h3>
+                    <h5 class="uk-panel-subtitle uk-text-center uk-text-uppercase">{{ $device->type->name }}</h5>
                     @if (\Storage::disk('public')->exists($device->image_path))
                         <img src="{{ asset($device->image) }}" class="device-image uk-margin-large-top uk-container-center uk-width-1-2 uk-border-rounded" style="display:block">
                     @endif

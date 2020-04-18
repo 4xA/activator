@@ -8,6 +8,7 @@
         <li class="uk-parent uk-active">
             <a href="#">Device Type</a>
             <ul class="uk-nav-sub">
+                <li><a href="{{ route('devices.types.index') }}">List</a></li>
                 <li><a href="{{ route('devices.types.create') }}">Create</a></li>
             </ul>
         </li>
