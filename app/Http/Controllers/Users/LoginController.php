@@ -19,6 +19,10 @@ class LoginController extends Controller
 
     public function authenticate(Request $request, bool $key = false)
     {
+        if ($this->checkIfAdmin($request)) {
+            return redirect()->route('admin.index');
+        }
+
         $rememberMe = $request->has('remember_me') && $request->remember_me == 'on';
 
         if ($this->hasTooManyLoginAttempts($request)) {
@@ -38,6 +42,7 @@ class LoginController extends Controller
         if ($auth) {
             $this->clearLoginAttempts($request);
             // Auth::logoutOtherDevices($request->password);
+
             return redirect()->intended('index');
         }
 
@@ -64,5 +69,11 @@ class LoginController extends Controller
     public function username()
     {
         return 'username';
+    }
+
+    public function checkIfAdmin(Request $request)
+    {
+        $user = User::where('username', $request->input('username'))->first();
+        return @$user->isAdmin();
     }
 }

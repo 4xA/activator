@@ -20,6 +20,8 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'is_admin',
+        'rate_limit',
         'email_token'
     ];
 
@@ -35,5 +37,10 @@ class User extends Authenticatable
     public function devices()
     {
         return $this->hasMany(Device::class, 'user_id');
+    }
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
     }
 }
