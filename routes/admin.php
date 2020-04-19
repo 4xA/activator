@@ -10,7 +10,7 @@ Route::group(['middleware' => 'auth.basic'], function() {
         Route::post('/store', 'DeviceTypeController@store')->name('devices.types.store');
         Route::get('/', 'DeviceTypeController@index')->name('devices.types.index');
         Route::get('/{type}/edit', 'DeviceTypeController@edit')->name('devices.types.edit');
-        Route::post('/{type}', 'DeviceTypeController@update')->name('devices.types.update');
+        Route::patch('/{type}', 'DeviceTypeController@update')->name('devices.types.update');
     });
 });
 

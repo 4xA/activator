@@ -80,7 +80,7 @@ class DeviceTypeController extends Controller
         $validator = Validator::make($request->all(), ['name' => 'required']);
         $validator->validate();
 
-        $deviceType::update($request->all());
+        $deviceType->update($request->all());
 
         return redirect()->route('devices.types.index');
     }

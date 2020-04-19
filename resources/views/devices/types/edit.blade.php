@@ -12,6 +12,7 @@
     <h1 class="">Update Device Type</h1>
     <form action="{{ route('devices.types.update', $type) }}" method="post" class="uk-form">
         @csrf
+        @method('PATCH')
         <div class="uk-form-row">
             <label for="name" class="uk-form-label">Name</label>
             <div class="uk-form-controls">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class MiscController
 {
@@ -28,7 +29,13 @@ class MiscController
 
         $pathInfo['path module'] = ($request->has('path')) ? 'active' : 'inactive';
 
-        return view('misc.fun', compact('times', 'pathInfo'));
+        $routeInfo = [
+            'Route::current()' => get_class(Route::current()),
+            'Route::currentRouteName()' => Route::currentRouteName(),
+            'Route::currentRouteAction()' => Route::currentRouteAction(),
+        ];
+
+        return view('misc.fun', compact('times', 'pathInfo', 'routeInfo'));
     }
 
     public function cookies(Request $request)
