@@ -17,8 +17,8 @@
                     @if (\Storage::disk('public')->exists($device->image_path))
                         <img src="{{ asset($device->image) }}" class="device-image uk-margin-large-top uk-container-center uk-width-1-2 uk-border-rounded" style="display:block">
                     @endif
+                    <a class="panel-link" href="{{ route('devices.panel', compact('device')) }}" class="uk-hidden"></a>
                 </div>
-                <a class="panel-link" href="{{ route('devices.panel', compact('device')) }}" class="uk-hidden"></a>
             </div>
         @endforeach
         <div class="uk-width-1-4">
@@ -32,8 +32,8 @@
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(() => {
-            $('.device-panel').click(() => {
-                let link = $('.panel-link').attr('href');
+            $('.device-panel').click(function () {
+                let link = $(this).find('.panel-link').attr('href');
                 window.location.href = link;
             });
         });
