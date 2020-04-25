@@ -5,14 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Activator - @yield('title', 'Remote Switch')</title>
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('packages/uikit/css/uikit.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('packages/uikit/css/components/form-advanced.min.css') }}">
     <link rel="stylesheet" href="{{ asset('packages/uikit/css/components/notify.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/css/main.css') }}">
-    <script src="{{ asset('packages/jquery/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('packages/uikit/js/uikit.min.js') }}"></script>
-    <script src="{{ asset('packages/uikit/js/components/notify.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('admin/css/main.min.css') }}">
     @yield('styles')
 </head>
 <body>
@@ -36,6 +32,9 @@
         @yield('content')
     </div>
 
+    <script src="{{ asset('packages/jquery/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('packages/uikit/js/uikit.min.js') }}"></script>
+    <script src="{{ asset('packages/uikit/js/components/notify.js') }}"></script>
     @yield('scripts')
 
     @if (session('status'))

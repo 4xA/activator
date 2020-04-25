@@ -63,7 +63,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::domain(env('APP_DOMAIN', 'activator.com'))
-             ->middleware(['web', 'throttle:rate_limit,1'])
+             ->middleware('web')
              ->namespace($this->namespace)
              ->group(base_path('routes/web.php'));
     }
@@ -88,7 +88,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $domain = env('APP_DOMAIN', 'activator.com');
         Route::domain("admin.$domain")
-             ->middleware(['web', 'throttle:rate_limit,1'])
+             ->middleware('web')
              ->namespace($this->namespace)
              ->group(base_path('routes/admin.php'));
     }

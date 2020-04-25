@@ -10,7 +10,7 @@
         @endforeach
     @endif
     <h1 class="">Create Device</h1>
-    <form action="{{ route('device.store') }}" method="post" class="uk-form" enctype="multipart/form-data">
+    <form action="{{ route('devices.store') }}" method="post" class="uk-form" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="uk-form-row">
             <label for="type_id" class="uk-form-label">Type</label>

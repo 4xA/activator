@@ -3,7 +3,7 @@
 @section('title') Login @endsection
 
 @section('content')
-    @if ($errors->any())
+    @if (isset($errors) && $errors->any())
         @foreach ($errors->all() as $e)
             <div class="uk-panel uk-panel-box uk-panel-box-danger uk-margin-top">
                 <p>{{$e}}</p>

@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => 'auth.basic'], function() {
+Route::group(['middleware' => ['auth.basic', 'throttle:rate_limit,1']], function() {
     Route::group(['namespace' => 'Admin'], function() {
         Route::get('/', 'AdminController')->name('admin.index');
     });

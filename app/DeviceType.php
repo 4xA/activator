@@ -10,6 +10,11 @@ class DeviceType extends Model
         'name'
     ];
 
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = strtolower($value);
+    }
+
     public function devices()
     {
         return $this->hasMany(Device::class, 'type_id');

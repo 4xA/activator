@@ -11,16 +11,13 @@
   },
   "devDependencies": {
     "axios": "^0.18",
-    "bootstrap": "^4.0.0",
     "cross-env": "^5.1",
-    "jquery": "^3.2",
     "laravel-mix": "^2.0",
-    "lodash": "^4.17.5",
-    "popper.js": "^1.12",
-    "vue": "^2.5.7"
+    "lodash": "^4.17.5"
   },
   "dependencies": {
     "jquery": "^3.4.1",
+    "jquery-toggles": "^4.0.0",
     "uikit": "^2.27.4"
   }
 }

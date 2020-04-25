@@ -1,0 +1,54 @@
+@font-face {
+    font-family: Inconsolata;
+    src: url(/fonts/Inconsolata.otf);
+}
+
+html {
+    margin: 0;
+    height: 100%;
+    font-family: 'Inconsolata' !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inconsolata' !important;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+}
+
+#main-content-container {
+    height: 100%;
+    padding-top: 35px;
+}
+
+body > .uk-navbar {
+    background: #38000E;
+}
+
+body .uk-navbar-brand {
+    color: white !important;
+}
+
+.auth-panel {
+    width: 50%;
+    height: 100%;
+}
+
+.uk-panel-box-danger {
+    background-color: #da314b;
+    color: #fff;
+}
+
+.uk-panel-box-primary .uk-panel-title {
+    color: #fff;
+}
+
+.uk-form input[class~="uk-button-danger"]{
+    color: #fff;
+}
+
+.uk-panel-box-primary .uk-panel-title {
+    color: #000;
+}

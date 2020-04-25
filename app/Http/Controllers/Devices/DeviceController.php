@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Devices;
 
 use App\Device;
+use App\DeviceToggles;
 use App\DeviceType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DeviceRequest;
+use App\Http\Requests\DeviceTogglesRequest;
+use Illuminate\Support\Facades\View;
 
 class DeviceController extends Controller
 {
@@ -33,7 +36,11 @@ class DeviceController extends Controller
     public function create()
     {
         $types = DeviceType::orderBy('name')->get();
-        return view('devices.create', compact('types'));
+        if (View::exists('devices.create')) {
+            return view('devices.create', compact('types'));
+        } else {
+            return redirect()->route('index');
+        }
     }
 
     /**
@@ -130,5 +137,28 @@ class DeviceController extends Controller
     {
         $device->delete();
         return redirect()->route('index');
+    }
+
+    public function panel(Device $device)
+    {
+        $type = strtolower($device->type->name);
+        $data = $device->togglesArray();
+        return view()->first(["devices.panels.$type", 'devices.panels.generic'], compact('device', 'data'));
+    }
+
+    public function toggle(DeviceTogglesRequest $request, Device $device)
+    {
+        $togglesArray = [];
+        foreach ($request->input('toggles') as $toggle) {
+            $toggle = DeviceToggles::firstOrCreate(['device_id' => $device->id]);
+            $toggleArray = [
+                'key' => $toggle->key,
+                'value' => $request->input('toggles')[$toggle->key]
+            ];
+            $togglesArray[] = $toggleArray;
+            $toggle->update($toggleArray);
+            $device->toggles()->save($toggle);
+        }
+        return response()->json(['status' => 'success', 'toggles' => $togglesArray]);
     }
 }

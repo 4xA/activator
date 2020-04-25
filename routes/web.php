@@ -26,15 +26,17 @@ Route::namespace('Users')->group(function () {
 });
 
 
-Route::middleware('auth')->group(function() {
+Route::group(['middleware' => ['auth', 'throttle:rate_limit,1']], function() {
     Route::get('/', 'HomeController@index')->name('index');
     Route::get('/home', 'HomeController')->name('home');
 
     Route::namespace('Devices')->group(function() {
-        Route::get('precede', 'DeviceController@precede');
-        Route::resource('device', 'DeviceController')->except(['index'])->names([
+        Route::get('/precede', 'DeviceController@precede');
+        Route::resource('devices', 'DeviceController')->except(['index'])->names([
             'show' => 'devices.preview'
         ]);
+        Route::get('{device}/panel', 'DeviceController@panel')->name('devices.panel');
+        Route::post('{device}/toggle', 'DeviceController@toggle')->name('devices.toggle');
     });
 });
 
