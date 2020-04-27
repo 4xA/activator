@@ -33,4 +33,11 @@ class DeviceToggles extends Model
                 break;
         }
     }
+
+    public static function getTypes()
+    {
+        return [
+            'boolean'
+        ];
+    }
 }
