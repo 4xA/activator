@@ -42,6 +42,7 @@ class LoginController extends Controller
         if ($auth) {
             $this->clearLoginAttempts($request);
             // Auth::logoutOtherDevices($request->password);
+            $request->session()->regenerate();
 
             return redirect()->intended('index');
         }
