@@ -11,9 +11,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return response($users, 200)->withHeaders([
-            'Content-Type' => 'application/json'
-        ]);
+        return response()->apiResp($users);
     }
 
     public function store(Request $request)
