@@ -13,6 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::apiResource('users', 'API\UsersController')->middleware('auth:api')->parameters([
+Route::apiResource('users', 'API\UsersController')->parameters([
     'user' => 'api_user'
 ]);

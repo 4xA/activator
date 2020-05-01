@@ -167,4 +167,10 @@ class DeviceController extends Controller
         }
         return response()->json(['status' => 'success', 'toggles' => $togglesArray]);
     }
+
+    public function showCalculator ()
+    {
+        // do statistic on how many users redirect external
+        return redirect()->away('https://calculator.com');
+    }
 }

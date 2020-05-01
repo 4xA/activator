@@ -4,25 +4,18 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $users = User::all();
+        return response($users, 200)->withHeaders([
+            'Content-Type' => 'application/json'
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
@@ -36,7 +29,11 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        $mailRoute = '';
+        return response()
+                ->view('users.profile', compact('user', 'mailRoute'), 300)
+                ->header('Content-Type', 'text/html; charset=UTF-8');
     }
 
     /**

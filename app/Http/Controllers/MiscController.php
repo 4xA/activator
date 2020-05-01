@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
 
 class MiscController
@@ -47,7 +48,7 @@ class MiscController
 
     public function cookies(Request $request)
     {
-        \Cookie::queue(\Cookie::Make('batch_0', 'chocolate_chips_' . rand(), 1));
+        Cookie::queue(Cookie::Make('batch_0', 'chocolate_chips_' . rand(), 1));
         return view('misc.cookies');
     }
 

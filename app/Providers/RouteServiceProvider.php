@@ -77,7 +77,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        Route::domain(env('API_DOMAIN', 'api.activator.com'))
+        $domain = env('APP_DOMAIN', 'activator.com');
+        Route::domain("api.$domain")
              ->prefix('api')
              ->middleware('api')
              ->namespace($this->namespace)

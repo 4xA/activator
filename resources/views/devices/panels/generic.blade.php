@@ -46,6 +46,7 @@
                             </div>
                         </div>
                     </form>
+                    <a href="{{ route('devices.calculator') }}" class="uk-link-muted uk-align-right">calculator.com</a>
                 </div>
             </div>
         </div>

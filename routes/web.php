@@ -23,7 +23,9 @@ Route::namespace('Users')->group(function () {
     Route::get('/users/register', 'RegisterController@showRegistrationForm')->name('register');
     Route::post('/users/register', 'RegisterController@register');
     // PROFILE
-    ROUTE::get('/uesrs/profile/', 'ProfileController@showProfileForm')->name('users.profile');
+    ROUTE::get('/users/profile/', 'ProfileController@showProfileForm')->name('users.profile');
+    ROUTE::get('/users/profile/image', 'ProfileController@showProfileImage')->name('users.profile.image');
+    ROUTE::get('/users/profile/download-info', 'ProfileController@downloadInfo')->name('users.profile.download');
     // MAIL
     Route::group(['middleware' => 'signed'], function () {
         Route::get('/subscribe/{user}', 'MailController@subscribe')->name('users.mail.subscribe');
@@ -31,7 +33,6 @@ Route::namespace('Users')->group(function () {
     });
     // API
 });
-
 
 Route::group(['middleware' => ['auth', 'throttle:rate_limit,1']], function () {
     Route::get('/', 'HomeController@index')->name('index');
@@ -44,6 +45,7 @@ Route::group(['middleware' => ['auth', 'throttle:rate_limit,1']], function () {
         ]);
         Route::get('/{device}/panel', 'DeviceController@panel')->name('devices.panel');
         Route::post('/{device}/toggle', 'DeviceController@toggle')->name('devices.toggle');
+        Route::get('calculator', 'DeviceController@showCalculator')->name('devices.calculator');
     });
 
     Route::group(['namespace' => 'Documentation', 'prefix' => '/documenation'], function () {
