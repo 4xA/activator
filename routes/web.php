@@ -22,15 +22,22 @@ Route::namespace('Users')->group(function () {
     // REGISTER
     Route::get('/users/register', 'RegisterController@showRegistrationForm')->name('register');
     Route::post('/users/register', 'RegisterController@register');
+    // PROFILE
+    ROUTE::get('/uesrs/profile/', 'ProfileController@showProfileForm')->name('users.profile');
+    // MAIL
+    Route::group(['middleware' => 'signed'], function () {
+        Route::get('/subscribe/{user}', 'MailController@subscribe')->name('users.mail.subscribe');
+        Route::get('/unsubscribe/{user}', 'MailController@unsubscribe')->name('users.mail.unsubscribe');
+    });
     // API
 });
 
 
-Route::group(['middleware' => ['auth', 'throttle:rate_limit,1']], function() {
+Route::group(['middleware' => ['auth', 'throttle:rate_limit,1']], function () {
     Route::get('/', 'HomeController@index')->name('index');
     Route::get('/home', 'HomeController')->name('home');
 
-    Route::namespace('Devices')->group(function() {
+    Route::namespace('Devices')->group(function () {
         Route::get('/precede', 'DeviceController@precede');
         Route::resource('devices', 'DeviceController')->except(['index'])->names([
             'show' => 'devices.preview'
@@ -40,7 +47,7 @@ Route::group(['middleware' => ['auth', 'throttle:rate_limit,1']], function() {
     });
 });
 
-Route::group(['prefix' => 'misc'], function() {
+Route::group(['prefix' => 'misc'], function () {
     Route::get('/fun/{times?}', 'MiscController@fun')->name('misc.fun');
     Route::get('/cookies', 'MiscController@cookies')->name('misc.cookies');
     Route::post('/cookies/create', 'MiscController@createCookie')->name('misc.cookies.create');

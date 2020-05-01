@@ -17,7 +17,10 @@ class DeviceController extends Controller
         $this->middleware('log')->except(['create', 'show', 'edit']);
         $this->middleware(function($request, \Closure $next) {
             if (\strtolower(\Auth::user()->first_name) == 'bob') {
-                return redirect()->route('index')->with('status', 'We do not serve Bobs around here.');
+                return redirect()->route('index')->with([
+                    'status' => 'danger',
+                    'message' => 'We do not serve Bobs around here.'
+                ]);
             }
             return $next($request);
         });
@@ -25,7 +28,10 @@ class DeviceController extends Controller
 
     public function precede()
     {
-        return redirect()->route('index')->with('status', 'A preceding route to resource');
+        return redirect()->route('index')->with([
+            'status' => 'success',
+            'message' => 'A preceding route to resource'
+        ]);
     }
 
     /**

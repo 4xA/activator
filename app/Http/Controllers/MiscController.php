@@ -35,7 +35,14 @@ class MiscController
             'Route::currentRouteAction()' => Route::currentRouteAction(),
         ];
 
-        return view('misc.fun', compact('times', 'pathInfo', 'routeInfo'));
+        $urlInfo = [
+            'url()->current()' => url()->current(),
+            'url()->full()' => url()->full(),
+            'url()->previous()' => url()->previous(),
+            'action()' => action('MiscController@cookies'),
+        ];
+        
+        return view('misc.fun', compact('times', 'pathInfo', 'routeInfo', 'urlInfo'));
     }
 
     public function cookies(Request $request)

@@ -21,6 +21,9 @@ class AdminController extends Controller
 
     public function logout()
     {
-        return redirect()->route('admin.index')->with('status', 'Logout is not supported with HTTP Basic Authentication');
+        return redirect()->route('admin.index')->with([
+            'status' => 'danger',
+            'message' => 'Logout is not supported with HTTP Basic Authentication'
+        ]);
     }
 }
