@@ -9,7 +9,9 @@ class SetDefaultLocalesForUrls
 {
     public function handle($request, Closure $next)
     {
-        URL::defaults(['locale' => $request->user()->locale]);
+        if ($request->user()) {
+            URL::defaults(['locale' => $request->user()->locale]);
+        }
         return $next($request);
     }
 }
