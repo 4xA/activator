@@ -18,6 +18,10 @@ body {
     height: 100%;
 }
 
+.theme-text {
+    color: #ac1d41;
+}
+
 #main-content-container {
     height: 100%;
     padding-top: 35px;

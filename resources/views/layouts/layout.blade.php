@@ -19,6 +19,7 @@
         <a href="/" class="uk-navbar-brand uk-text-uppercase"><i class="uk-icon-plug"></i> activator</a>
         <div class="uk-navbar-content uk-navbar-flip">
             @if (\Auth::check())
+                <a href="{{ route('documentation.index') }}" class="uk-button">documenation</a>
                 <a href="{{ route('users.profile') }}" class="uk-button"><i class="uk-icon-user"></i></a>
                 <a id="logout-button" class="uk-button uk-button-danger">Logout</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="post" class="uk-hidden">

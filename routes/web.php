@@ -33,7 +33,7 @@ Route::namespace('Users')->group(function () {
 });
 
 
-Route::group(['middleware' => ['auth', 'throttle:rate_limit,1']], function () {
+Route::group(['middleware' => ['auth', 'throttle:rate_limit,1', 'locale']], function () {
     Route::get('/', 'HomeController@index')->name('index');
     Route::get('/home', 'HomeController')->name('home');
 
@@ -42,8 +42,12 @@ Route::group(['middleware' => ['auth', 'throttle:rate_limit,1']], function () {
         Route::resource('devices', 'DeviceController')->except(['index'])->names([
             'show' => 'devices.preview'
         ]);
-        Route::get('{device}/panel', 'DeviceController@panel')->name('devices.panel');
-        Route::post('{device}/toggle', 'DeviceController@toggle')->name('devices.toggle');
+        Route::get('/{device}/panel', 'DeviceController@panel')->name('devices.panel');
+        Route::post('/{device}/toggle', 'DeviceController@toggle')->name('devices.toggle');
+    });
+
+    Route::group(['namespace' => 'Documentation', 'prefix' => '/documenation'], function () {
+        Route::get('/{locale}/index', 'DocsController@index')->name('documentation.index');
     });
 });
 

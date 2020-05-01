@@ -20,6 +20,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'locale',
         'is_admin',
         'subscribed_to_mail',
         'rate_limit',
