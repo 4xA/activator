@@ -7,6 +7,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class DeviceRequest extends FormRequest
 {
+    protected $errorBag = 'devices';
+
     public function authorize()
     {
         return $this->user()->can('create', Device::class);
@@ -18,9 +20,15 @@ class DeviceRequest extends FormRequest
             return [];
         }
 
+        $validateName = function ($attribute, $value, $fail) {
+            if (strtolower($value) === 'activator') {
+                return $fail("You cannot run Activator from Activator. \u{1F61B}... I mean, you can but we just don't want you to anyway haha. We has jobs.");
+            }
+        };
+
         return [
-            'type_id' => 'required|exists:device_types,id',
-            'name' => 'string|max:255',
+            'type_id' => 'bail|required|exists:device_types,id',
+            'name' => ['string', 'max:255', $validateName],
             'image' => 'image',
         ];
     }

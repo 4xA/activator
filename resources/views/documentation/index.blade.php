@@ -17,6 +17,9 @@
                     Activator.
                 </p>
                 <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, eius. Eum aliquam pariatur voluptates, dicta quasi, laborum sint labore accusamus molestiae est dolor praesentium nihil accusantium animi sapiente adipisci magni.
+                </p>
+                <p>
                     Please select one of the title on the left for help on the item you need.
                 </p>
             </article>

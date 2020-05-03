@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="uk-width-3-4">
-    @if ($errors->any())
-        @foreach ($errors->all() as $e)
+    @if ($errors->devices->any())
+        @foreach ($errors->devices->all() as $e)
             <div class="uk-panel uk-panel-box uk-panel-box-danger uk-margin-top">
                 <p>{{$e}}</p>
             </div>
