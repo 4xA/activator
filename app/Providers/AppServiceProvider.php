@@ -18,6 +18,16 @@ class AppServiceProvider extends ServiceProvider
     {
         Blade::component('components.image-displayer', 'image');
 
+        // Blade::withoutDoubleEncoding();
+
+        Blade::directive('datetime', function ($expression) {
+            return "<?php echo ($expression)->format('m/d/Y H:i'); ?>";
+        });
+
+        Blade::if('env', function ($environment) {
+            return app()->environment($environment);
+        });
+
         View::share('key', 'value');
 
         Validator::extend('toggle', function ($attribute, $value, $parameteres, $validator) {

@@ -18,7 +18,7 @@
     <nav class="uk-navbar">
         <a href="/" class="uk-navbar-brand uk-text-uppercase"><i class="uk-icon-plug"></i> activator</a>
         <div class="uk-navbar-content uk-navbar-flip">
-            @if (\Auth::check())
+            @auth
                 <a href="{{ route('documentation.index') }}" class="uk-button">documenation</a>
                 <a href="{{ route('users.profile') }}" class="uk-button"><i class="uk-icon-user"></i></a>
                 <a id="logout-button" class="uk-button uk-button-danger">Logout</a>
@@ -26,15 +26,26 @@
                     @csrf
                     <input class="uk-button uk-button-danger" type="submit" value="Logout">
                 </form>
-            @else
+            @endauth
+            @guest
                 <a href="{{ route('register') }}" class="uk-button uk-button-danger">Register</a>
                 <a href="{{ route('login') }}" class="uk-button uk-button-primary">Login</a>
-            @endif
+            @endguest
         </div>
     </nav>
 
     <div id="main-content-container" class="uk-container">
         @yield('content')
+
+        <div>
+            <hr>
+            <footer>
+                @php
+                    $now = now();
+                @endphp
+                <p class="">@datetime($now)</p>
+            </footer>
+        </div>
     </div>
 
     @yield('scripts')

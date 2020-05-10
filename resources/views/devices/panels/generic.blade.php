@@ -112,6 +112,7 @@
 
         $(document).ready(function () {
             toggles.init();
+            console.log(@json($data));
         });
     </script>
 @endsection

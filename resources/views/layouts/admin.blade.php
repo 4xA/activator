@@ -37,11 +37,11 @@
     <script src="{{ asset('packages/uikit/js/components/notify.js') }}"></script>
     @yield('scripts')
 
-    @if (session('status'))
+    @unless (session('status') == 'success')
         <script>
             UIkit.notify("{{ session('status') }}", {status:'danger'});
         </script>
-    @endif
+    @endunless
     
     <script>
         $(document).ready(function() {

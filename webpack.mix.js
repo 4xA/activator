@@ -18,6 +18,7 @@ const mix = require('laravel-mix');
     .copy('resources/fonts/Inconsolata.otf', 'public/fonts')
     .copy('resources/img', 'public/img')
     .styles(['resources/css/main.css'], 'public/css/main.min.css')
+    .styles(['resources/css/auth.css'], 'public/css/auth.min.css')
     .styles(['resources/css/boxes.css'], 'public/css/boxes.min.css')
     .styles([
        'node_modules/jquery-toggles/css/toggles.css',

@@ -6,9 +6,13 @@
 
 @section('content')
     <div class="uk-grid uk-grid-small" data-uk-grid-margin>
-        @foreach (\Auth::user()->devices as $device)
+        @forelse (\Auth::user()->devices as $device)
             <div class="uk-width-1-4">
                 <div class="device-panel uk-panel uk-panel-box uk-panel-box-primary">
+                    <span class="uk-text-warning">{{ $loop->iteration }}</span>
+                    @if ($loop->first)
+                        <i class="uk-icon-star uk-text-warning"></i>
+                    @endif
                     <div class="uk-panel-badge">
                         <a href="{{ route('devices.edit', compact('device')) }}" class="uk-button uk-button-danger uk-button-mini">Edit</a>
                     </div>
@@ -20,7 +24,9 @@
                     <a class="panel-link" href="{{ route('devices.panel', compact('device')) }}" class="uk-hidden"></a>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <p>Create your first device here -></p>
+        @endforelse
         <div class="uk-width-1-4">
             <a href="{{ route('devices.create') }}" id="device-panel device-panel-add" class="device-panel uk-panel uk-panel-box uk-panel-box-primary uk-vertical-align">
                 <div class="uk-vertical-align-middle uk-text-center uk-width-1-1"><i class="uk-icon-plus-circle uk-icon-large"></i></div>
