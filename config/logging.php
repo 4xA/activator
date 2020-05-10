@@ -36,7 +36,7 @@ return [
         'stack' => [
             'driver' => 'stack',
             'name' => env('APP_NAME') . '-' . env('APP_ENV'),
-            'channels' => ['single', 'mail'],
+            'channels' => ['single', 'mail', 'developer'],
         ],
 
         'single' => [
@@ -95,6 +95,11 @@ return [
                 'level' => \Monolog\Logger::CRITICAL
             ]
         ],
+
+        'developer' => [
+            'driver' => 'custom',
+            'via' => \App\Logging\CreateDeveloperLogger::class
+        ]
     ],
 
 ];
