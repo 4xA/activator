@@ -35,12 +35,14 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'name' => env('APP_NAME') . '-' . env('APP_ENV'),
+            'channels' => ['single', 'mail'],
         ],
 
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
+            'tap' => [\App\Logging\CustomizeFormatter::class],
             'level' => 'debug',
         ],
 
@@ -75,6 +77,23 @@ return [
         'errorlog' => [
             'driver' => 'errorlog',
             'level' => 'debug',
+        ],
+
+        'mail' => [
+            'driver' => 'monolog',
+            'handler' => \Monolog\Handler\SwiftMailerHandler::class,
+            'formatter' => \Monolog\Formatter\HtmlFormatter::class,
+            'level' => 'critical',
+            'with' => [
+                'mailer' => new Swift_Mailer((new Swift_SmtpTransport(
+                    env('MAIL_HOST'), env('MAIL_PORT')
+                ))->setUsername(env('MAIL_USERNAME'))->setPassword(env('MAIL_PASSWORD'))),
+                'message' => (new Swift_Message('Critical Error on activator.localdev'))
+                                ->setFrom(['noreply-activator@activator.com' => 'Activator Notifcations'])
+                                ->setTo(['asa0abbad@gmail.com' => 'Asa Abbad'])
+                                ->setBody('Critical Error Message', 'text/html'),
+                'level' => \Monolog\Logger::CRITICAL
+            ]
         ],
     ],
 
