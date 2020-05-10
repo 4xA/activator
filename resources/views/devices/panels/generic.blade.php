@@ -1,4 +1,6 @@
-@extends('layouts.layout')
+@extends('layouts.main')
+
+@section('title', 'Generic Panel')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('packages/jquery-toggles/css/toggles.min.css') }}">

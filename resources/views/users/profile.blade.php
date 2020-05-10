@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.main')
 
 @section('content')
     <a href="{{ route('users.profile.image') }}" class="uk-link-muted">view profile image</a>

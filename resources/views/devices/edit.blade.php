@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.main')
 
 @section('content')
 <div class="uk-width-3-4">
@@ -26,8 +26,15 @@
         </div>
         <div class="uk-form-row">
             @if (\Storage::disk('public')->exists($device->image_path))
-                <img src="{{ asset($device->image) }}" class="uk-width-1-4 uk-border-rounded" style="display:block">
+                @image
+                    @slot('image_path')
+                        {{ asset($device->image) }}
+                    @endslot
+                    {{ basename($device->image) }}
+                @endimage
             @endif
+        </div>
+        <div class="uk-form-row">
             <label for="image" class="uk-form-label">Image</label>
             <div class="uk-form-controls">
                 <input type="file" name="image" class="uk-width-1-2" value="{{ old('file') }}">
