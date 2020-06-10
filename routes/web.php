@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth', 'throttle:rate_limit,1']], function () {
         Route::get('calculator', 'DeviceController@showCalculator')->name('devices.calculator');
     });
 
-    Route::group(['namespace' => 'Documentation', 'prefix' => '/documenation'], function () {
+    Route::group(['namespace' => 'Documentation', 'prefix' => '/documenation', 'middleware' => 'setLocale'], function () {
         Route::get('/{locale}/index', 'DocsController@index')->name('documentation.index');
     });
 });

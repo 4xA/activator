@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 
 class DocsController extends Controller
 {
-    public function index ()
+    public function index (?string $locale)
     {
-        return view('documentation.index');
+        return view('documentation.index', compact('locale'));
     }
 }
