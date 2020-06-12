@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
@@ -14,7 +15,8 @@ class ProfileController extends Controller
         $mailRoute = $user->subscribed_to_mail
                                 ? URL::signedRoute('users.mail.unsubscribe', compact('user'))
                                 : URL::signedRoute('users.mail.subscribe', compact('user'));
-        return view('users.profile', compact('user', 'mailRoute'));
+        $locales = config('locales');
+        return view('users.profile', compact('user', 'mailRoute', 'locales'));
     }
 
     public function showProfileImage ()
@@ -28,6 +30,22 @@ class ProfileController extends Controller
         return response()->streamDownload(function () {
             return $this->userInfo();
         }, "{$user->username}.txt");
+    }
+
+    public function setLocale (Request $request)
+    {
+        $locales = implode(',', config('locales'));
+        $this->validate($request, [
+            'locale' => "required|in:{$locales}"
+        ]);
+
+        $user = Auth::user();
+        $user->locale = $request->input('locale');
+        $user->save();
+
+        return request()->json([
+            'status' => 'locale updated'
+        ], 200);
     }
 
     private function userInfo ()

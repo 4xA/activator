@@ -23,9 +23,10 @@ Route::namespace('Users')->group(function () {
     Route::get('/users/register', 'RegisterController@showRegistrationForm')->name('register');
     Route::post('/users/register', 'RegisterController@register');
     // PROFILE
-    ROUTE::get('/users/profile/', 'ProfileController@showProfileForm')->name('users.profile');
-    ROUTE::get('/users/profile/image', 'ProfileController@showProfileImage')->name('users.profile.image');
-    ROUTE::get('/users/profile/download-info', 'ProfileController@downloadInfo')->name('users.profile.download');
+    Route::get('/users/profile/', 'ProfileController@showProfileForm')->name('users.profile');
+    Route::get('/users/profile/image', 'ProfileController@showProfileImage')->name('users.profile.image');
+    Route::get('/users/profile/download-info', 'ProfileController@downloadInfo')->name('users.profile.download');
+    Route::post('/users/profile/setLocale', 'ProfileController@setLocale')->name('users.profile.setLocale');
     // MAIL
     Route::group(['middleware' => 'signed'], function () {
         Route::get('/subscribe/{user}', 'MailController@subscribe')->name('users.mail.subscribe');
