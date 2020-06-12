@@ -10,9 +10,10 @@ class setLocal
     public function handle($request, Closure $next)
     {
         $user = $request->user();
+        $route = $request->route()->getName();
         $locale = $request->route('locale');
         if ($user && $user->locale !== $locale) {
-            return redirect()->route('documentation.index', ['locale' => $user->locale]);
+            return redirect()->route($route, ['locale' => $user->locale]);
         }
         App::setLocale($user->locale);
         return $next($request);
