@@ -13,7 +13,7 @@
 </head>
 <body>
     <nav class="uk-navbar">
-        <a href="/" class="uk-navbar-brand uk-text-uppercase"><i class="uk-icon-plug"></i> activator admin panel</a>
+        <a href="/" class="uk-navbar-brand uk-text-uppercase"><i class="uk-icon-plug"></i> {{ __('main.title') }} admin panel</a>
         <div class="uk-navbar-content uk-navbar-flip">
             @if (\Auth::check())
                 <a id="logout-button" class="uk-button uk-button-danger">Logout</a>

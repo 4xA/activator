@@ -16,7 +16,7 @@
 </head>
 <body>
     <nav class="uk-navbar">
-        <a href="/" class="uk-navbar-brand uk-text-uppercase"><i class="uk-icon-plug"></i> activator</a>
+        <a href="/" class="uk-navbar-brand uk-text-uppercase"><i class="uk-icon-plug"></i> {{ __('main.title') }}</a>
         <div class="uk-navbar-content uk-navbar-flip">
             @auth
                 <a href="{{ route('documentation.index') }}" class="uk-button">documenation</a>
