@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
@@ -21,14 +22,14 @@ class AppServiceProvider extends ServiceProvider
         // Blade::withoutDoubleEncoding();
 
         Blade::directive('datetime', function ($expression) {
-            return "<?php echo ($expression)->format('m/d/Y H:i'); ?>";
+            return "<?php echo ($expression)->format('m/d/Y g:i A'); ?>";
         });
 
         Blade::if('env', function ($environment) {
             return app()->environment($environment);
         });
 
-        View::share('key', 'value');
+        View::share('hoursLeft', self::hoursLeftTillEndOfDay());
 
         Validator::extend('toggle', function ($attribute, $value, $parameteres, $validator) {
             if (!is_array($value)) {
@@ -54,5 +55,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+    }
+
+    private static function hoursLeftTillEndOfDay ()
+    {
+        $now = Carbon::now();
+        $leaveTime =Carbon::parse('18:00');
+        if ($now->gt($leaveTime)) {
+            return 0;
+        }
+        $hoursLeft = $now->diffInHours($leaveTime, false);
+        return $hoursLeft;
     }
 }

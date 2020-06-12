@@ -43,7 +43,7 @@
                 @php
                     $now = now();
                 @endphp
-                <p class="">@datetime($now)</p>
+                <p class="">@datetime($now) | {{ trans_choice('main.hours_left', $hoursLeft, ['hours' => $hoursLeft]) }}</p>
             </footer>
         </div>
     </div>
