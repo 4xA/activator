@@ -59,8 +59,8 @@ class AppServiceProvider extends ServiceProvider
 
     private static function hoursLeftTillEndOfDay ()
     {
-        $now = Carbon::now();
-        $leaveTime =Carbon::parse('18:00');
+        $now = Carbon::now()->setTimezone('Asia/Amman');
+        $leaveTime = Carbon::parse('18:00');
         if ($now->gt($leaveTime)) {
             return 0;
         }

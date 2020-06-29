@@ -41,7 +41,7 @@
             <hr>
             <footer>
                 @php
-                    $now = now();
+                    $now = now()->setTimezone('Asia/Amman');
                 @endphp
                 <p class="">@datetime($now) | {{ trans_choice('main.hours_left', $hoursLeft, ['hours' => $hoursLeft]) }}</p>
             </footer>
