@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
         // Blade::withoutDoubleEncoding();
 
         Blade::directive('datetime', function ($expression) {
-            return "<?php echo ($expression)->format('m/d/Y g:i A'); ?>";
+            return "<?php echo ($expression)->format('d-m-Y g:i A'); ?>";
         });
 
         Blade::if('env', function ($environment) {
@@ -59,12 +59,12 @@ class AppServiceProvider extends ServiceProvider
 
     private static function hoursLeftTillEndOfDay ()
     {
-        $now = Carbon::now()->setTimezone('Asia/Amman');
-        $leaveTime = Carbon::parse('18:00');
+        $now = Carbon::now();
+        $leaveTime = Carbon::parse('19:00');
         if ($now->gt($leaveTime)) {
             return 0;
         }
-        $hoursLeft = $now->diffInHours($leaveTime, false);
+        $hoursLeft = ceil($now->diffInMinutes($leaveTime, false) / 60);
         return $hoursLeft;
     }
 }
