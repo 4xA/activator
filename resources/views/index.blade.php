@@ -5,34 +5,37 @@
 @endsection
 
 @section('content')
-    <div class="uk-grid uk-grid-small" data-uk-grid-margin>
+    <vk-grid gutter="small" v-vk-height-match="'> div .uk-card'">
         @forelse (\Auth::user()->devices as $device)
             <div class="uk-width-1-4">
-                <div class="device-panel uk-panel uk-panel-box uk-panel-box-primary">
-                    <span class="uk-text-warning">{{ $loop->iteration }}</span>
-                    @if ($loop->first)
-                        <i class="uk-icon-star uk-text-warning"></i>
-                    @endif
-                    <div class="uk-panel-badge">
-                        <a href="{{ route('devices.edit', compact('device')) }}" class="uk-button uk-button-danger uk-button-mini">Edit</a>
-                    </div>
+                <vk-card class="device-panel">
+                    <span class="uk-text-warning">{{ $loop->iteration }}
+                        @if ($loop->first)
+                            <vk-icon icon="star" ratio="0.6" style="position: relative; top: -2px"></vk-icon>
+                        @endif
+                    </span>
+                    <vk-label slot="badge">
+                        <a href="{{ route('devices.edit', compact('device')) }}"><vk-button type="danger" size="small" class="">Edit</vk-button></a>
+                    </vk-label>
                     <h3 class="uk-panel-title uk-text-center uk-text-uppercase">{{ $device->name }}</h3>
                     <h5 class="uk-panel-subtitle uk-text-center uk-text-uppercase">{{ $device->type->name }}</h5>
                     @if (\Storage::disk('public')->exists($device->image_path))
-                        <img src="{{ asset($device->image) }}" class="device-image uk-margin-large-top uk-container-center uk-width-1-2 uk-border-rounded" style="display:block">
+                        <img src="{{ asset($device->image) }}" class="device-image uk-align-center uk-border-rounded" style="display:block">
                     @endif
                     <a class="panel-link" href="{{ route('devices.panel', compact('device')) }}" class="uk-hidden"></a>
-                </div>
+                </vk-card>
             </div>
         @empty
             <p>Create your first device here -></p>
         @endforelse
         <div class="uk-width-1-4">
-            <a href="{{ route('devices.create') }}" id="device-panel device-panel-add" class="device-panel uk-panel uk-panel-box uk-panel-box-primary uk-vertical-align">
-                <div class="uk-vertical-align-middle uk-text-center uk-width-1-1"><i class="uk-icon-plus-circle uk-icon-large"></i></div>
+            <a href="{{ route('devices.create') }}">
+                <vk-card class="device-panel">
+                    <vk-icon class="uk-position-center" icon="plus-circle" ratio="3" style="color: white"></vk-icon>
+                </vk-card>
             </a>
         </div>
-    </div>
+    </vk-grid>
 @endsection
 
 @section('scripts')

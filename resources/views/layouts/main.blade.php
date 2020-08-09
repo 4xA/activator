@@ -5,67 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Activator - @yield('title', 'Remote Switch')</title>
-    <link rel="stylesheet" href="{{ asset('packages/uikit/css/uikit.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('packages/uikit/css/components/form-advanced.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('packages/uikit/css/components/notify.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
-    <script src="{{ asset('packages/jquery/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('packages/uikit/js/uikit.min.js') }}"></script>
-    <script src="{{ asset('packages/uikit/js/components/notify.js') }}"></script>
     @yield('styles')
 </head>
 <body>
-    <nav class="uk-navbar">
-        <a href="/" class="uk-navbar-brand uk-text-uppercase"><i class="uk-icon-plug"></i> {{ __('main.title') }}</a>
-        <div class="uk-navbar-content uk-navbar-flip">
-            @auth
-                <a href="{{ route('documentation.index') }}" class="uk-button">documenation</a>
-                <a href="{{ route('users.profile') }}" class="uk-button"><i class="uk-icon-user"></i></a>
-                <a id="logout-button" class="uk-button uk-button-danger">Logout</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="post" class="uk-hidden">
-                    @csrf
-                    <input class="uk-button uk-button-danger" type="submit" value="Logout">
-                </form>
-            @endauth
-            @guest
-                <a href="{{ route('register') }}" class="uk-button uk-button-danger">Register</a>
-                <a href="{{ route('login') }}" class="uk-button uk-button-primary">Login</a>
-            @endguest
+    <div id="app">
+        @auth
+            <vk-navbar>
+                <vk-navbar-nav>
+                    @if (auth()->user()->isAdmin())
+                        <vk-navbar-logo><a class="uk-text-uppercase uk-link-reset" href="{{ route('admin.index') }}"><vk-icon icon="bolt" ratio="1.2"></vk-icon> {{ __('main.title') }} Admin</a></vk-navbar-logo>
+                    @else
+                        <vk-navbar-logo><a class="uk-text-uppercase uk-link-reset" href="{{ route('index') }}"><vk-icon icon="bolt" ratio="1.2"></vk-icon> {{ __('main.title') }}</a></vk-navbar-logo>
+                    @endif
+                </vk-navbar-nav>
+                <vk-navbar-nav slot="right">
+                    @if (auth()->user()->isAdmin())
+                        <vk-navbar-item>
+                            <vk-button-link href="{{ route('admin.logout') }}" type="danger" size="small"><vk-icon icon="sign-out"></vk-icon> Logout</vk-button-link>
+                        </vk-navbar-item>
+                    @else
+                        <vk-navbar-nav-item href="{{ route('documentation.index') }}" title="Documentation" icon="pencil"></vk-navbar-nav-item>
+                        <vk-navbar-nav-item href="{{ route('users.profile') }}" title="Profile" icon="user"></vk-navbar-nav-item>
+                        <vk-navbar-item>
+                            <vk-button-link href="{{ route('logout') }}" type="danger" size="small"><vk-icon icon="sign-out"></vk-icon> Logout</vk-button-link>
+                        </vk-navbar-item>
+                    @endif
+                </vk-navbar-nav>
+            </vk-navbar>
+        @endauth
+            
+        <div id="main-content-container" class="uk-container" v-vk-height-viewport="{ offsetBottom: 20 }">
+            @yield('content')
         </div>
-    </nav>
-
-    <div id="main-content-container" class="uk-container">
-        @yield('content')
-
-        <div>
-            <hr>
-            <footer>
-                @php
-                    $now = now();
-                @endphp
-                <p class="">@datetime($now) | {{ trans_choice('main.hours_left', $hoursLeft, ['hours' => $hoursLeft]) }}</p>
-            </footer>
-        </div>
+        @auth
+            <vk-sticky bottom>
+                <footer class="uk-margin-top">
+                    <hr>
+                    @php
+                        $now = now();
+                    @endphp
+                    <p class="uk-margin-left">@datetime($now) | {{ trans_choice('main.hours_left', $hoursLeft, ['hours' => $hoursLeft]) }}</p>
+                </footer>
+            </vk-sticky>
+        @endauth
     </div>
 
+    <script src="{{ mix('js/app.js') }}"></script>
     @yield('scripts')
 
     @if (session('status') == 'success')
         <script>
-            UIkit.notify("{{ session('message') }}", {status:'success'});
+            // UIkit.notify("{{ session('message') }}", {status:'success'});
         </script>
     @elseif (session('status') == 'danger')
         <script>
-            UIkit.notify("{{ session('message') }}", {status:'danger'});
+            // UIkit.notify("{{ session('message') }}", {status:'danger'});
         </script>
     @endif
-    
-    <script>
-        $(document).ready(function() {
-            $('#logout-button').click(function() {
-                $('#logout-form').submit();
-            });
-        });
-    </script>
 </body>
 </html>

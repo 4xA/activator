@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('layouts.main')
 
 @section('content')
 <div class="uk-width-3-4">
@@ -10,18 +10,18 @@
         @endforeach
     @endif
     <h1 class="">Update Device Type</h1>
-    <form action="{{ route('devices.types.update', $type) }}" method="post" class="uk-form">
+    <form action="{{ route('devices.types.update', $type) }}" method="post">
         @csrf
         @method('PATCH')
-        <div class="uk-form-row">
+        <div>
             <label for="name" class="uk-form-label">Name</label>
             <div class="uk-form-controls">
-                <input type="text" name="name" class="uk-width-1-2" value="{{ old('name', $type->name) }}">
+                <input type="text" name="name" class="uk-input uk-width-1-2" value="{{ old('name', $type->name) }}">
             </div>
         </div>
-        <div class="uk-form-row">
+        <div class="uk-margin-top">
             <div class="uk-form-controls">
-                <input type="submit" value="Update" class="uk-button">
+                <vk-button html-type="submit" value="update" >Update</vk-button>
             </div>
         </div>
     </form>

@@ -34,11 +34,6 @@ body .uk-navbar-brand {
     color: white !important;
 }
 
-.auth-panel {
-    width: 50%;
-    height: 100%;
-}
-
 .uk-panel-box-danger {
     background-color: #da314b;
     color: #fff;
@@ -54,4 +49,8 @@ body .uk-navbar-brand {
 
 .uk-panel-box-primary .uk-panel-title {
     color: #000;
+}
+
+.uk-card-badge .uk-label {
+    background: transparent;
 }

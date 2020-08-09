@@ -12,10 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css')
-   .copy('node_modules/uikit/dist/css', 'public/packages/uikit/css')
-   .copy('node_modules/uikit/dist/js', 'public/packages/uikit/js')
-   .copy('node_modules/uikit/dist/fonts', 'public/packages/uikit/fonts')
    .copy('resources/fonts/Inconsolata.otf', 'public/fonts')
    .copy('resources/img', 'public/img')
    .styles(['resources/css/main.css'], 'public/css/main.min.css')

@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.main')
 
 @section('title') Email Token Login @endsection
 
@@ -10,21 +10,28 @@
             </div>
         @endforeach
     @endif
-    <div class="auth-panel uk-container-center uk-vertical-align">
-        <div class="uk-panel uk-panel-box uk-vertical-align-middle uk-width-1-1">
-            <h1 class="uk-penel-title uk-text-center uk-text-uppercase">Email Token Login</h1>
-            <form action="/users/login/token" method="post" class="uk-form uk-form-stacked">
-                {{ csrf_field() }}
-                <div class="uk-form-row">
-                    <label for="email_token" class="uk-form-label">Please input emailed token</label>
-                    <div class="uk-form-controls">
-                        <input type="text" name="email_token" class="uk-width-1-1" value="{{ old('email_token') }}">
+    <div class="uk-position-top-left">
+        <a class="uk-link-reset" href="{{ route('login') }}">
+            <vk-icon icon="arrow-left" ratio="1.5"></vk-icon> Login
+        </a>
+    </div>
+    <div class="uk-position-center">
+        <div>
+            <vk-card>
+                <vk-card-title><h1 class="uk-penel-title uk-text-center uk-text-uppercase">Email Token Login</h1></vk-card-title>
+                <form action="/users/login/token" method="post">
+                    {{ csrf_field() }}
+                    <div class="uk-margin-small-top">
+                        <label for="email_token" class="uk-form-label">Please input emailed token</label>
+                        <div class="uk-form-controls">
+                            <input type="text" name="email_token" class="uk-input uk-width-1-1" value="{{ old('email_token') }}">
+                        </div>
                     </div>
-                </div>
-                <div class="uk-form-row uk-clearfix">
-                    <button type="submit" class="uk-button uk-button-primary uk-align-right">Login</button>
-                </div>
-            </form>
+                    <div class="uk-margin-small-top">
+                        <button type="submit" class="uk-button uk-button-primary uk-align-right">Login</button>
+                    </div>
+                </form>
+            </vk-card>
         </div>
     </div>
 @endsection

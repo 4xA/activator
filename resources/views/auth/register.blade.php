@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.main')
 
 @section('title') Register @endsection
 
@@ -10,51 +10,46 @@
             </div>
         @endforeach
     @endif
-    <div class="auth-panel uk-container-center uk-vertical-align">
-        <div class="uk-panel uk-panel-box uk-vertical-align-middle uk-width-1-1">
-            <h1 class="uk-penel-title uk-text-center uk-text-uppercase">Register</h1>
-            <form action="/users/register" method="post" class="uk-form uk-form-stacked">
-                {{ csrf_field() }}
-                <div class="uk-form-row">
-                    <label for="first_name" class="uk-form-label">First Name</label>
-                    <div class="uk-form-controls">
-                        <input type="text" name="first_name" class="uk-width-1-1" value="{{ old('first_name') }}">
-                    </div>
-                </div>
-                <div class="uk-form-row">
-                    <label for="last_name" class="uk-form-label">Last Name</label>
-                    <div class="uk-form-controls">
-                        <input type="text" name="last_name" class="uk-width-1-1" value="{{ old('last_name') }}">
-                    </div>
-                </div>
-                <div class="uk-form-row">
-                    <label for="username" class="uk-form-label">Username</label>
-                    <div class="uk-form-controls">
-                        <input type="text" name="username" class="uk-width-1-1" value="{{ old('username') }}">
-                    </div>
-                </div>
-                <div class="uk-form-row">
-                    <label for="email" class="uk-form-label">E-mail</label>
-                    <div class="uk-form-controls">
-                        <input type="email" name="email" class="uk-width-1-1" value="{{ old('email') }}">
-                    </div>
-                </div>
-                <div class="uk-form-row">
-                    <label for="password" class="uk-form-label">Password</label>
-                    <div class="uk-form-controls">
-                        <input type="password" name="password" class="uk-width-1-1">
-                    </div>
-                </div>
-                <div class="uk-form-row">
-                    <label for="password_confirmation" class="uk-form-label">Confirm Password</label>
-                    <div class="uk-form-controls">
-                        <input type="password" name="password_confirmation" class="uk-width-1-1">
-                    </div>
-                </div>
-                <div class="uk-form-row uk-clearfix">
-                    <button type="submit" class="uk-button uk-button-primary uk-align-right">Register</button>
-                </div>
-            </form>
-        </div>
+    <div class="uk-position-top-left">
+        <a class="uk-link-reset" href="{{ route('login') }}">
+            <vk-icon icon="arrow-left" ratio="1.5"></vk-icon> Login
+        </a>
+    </div>
+    <div class="uk-position-center">
+        <vk-grid>
+            <div>
+                <vk-card>
+                    <vk-card-title><h1 class="uk-penel-title uk-text-center uk-text-uppercase">Register</h1></vk-card-title>
+                    <form action="{{ route('users.register') }}" method="post" class="uk-form-stacked">
+                        {{ csrf_field() }}
+                        <div>
+                            <input type="text" name="first_name" class="uk-input uk-width-1-1" value="{{ old('first_name') }}" placeholder="First Name">
+                        </div>
+                        <div class="uk-margin-small-top">
+                            <input type="text" name="last_name" class="uk-input uk-width-1-1" value="{{ old('last_name') }}" placeholder="Last Name">
+                        </div>
+                        <div class="uk-margin-small-top">
+                            <input type="text" name="username" class="uk-input uk-width-1-1" value="{{ old('username') }}" placeholder="Username">
+                        </div>
+                        <div class="uk-margin-small-top">
+                            <input type="email" name="email" class="uk-input uk-width-1-1" value="{{ old('email') }}" placeholder="E-mail">
+                        </div>
+                        <div class="uk-margin-small-top">
+                            <input type="password" name="password" class="uk-input uk-width-1-1" placeholder="password">
+                        </div>
+                        <div class="uk-margin-small-top">
+                            <input type="password" name="password_confirmation" class="uk-input uk-width-1-1" placeholder="Confirm Passowrd">
+                        </div>
+                        <div class="uk-margin uk-child-width-auto">
+                            <button type="submit" class="uk-button uk-button-primary uk-align-right">Register</button>
+                        </div>
+                    </form>
+                </vk-card>
+            </div>
+            <div>
+                <vk-card>
+                </vk-card>
+            </div> 
+        </vk-grid>
     </div>
 @endsection

@@ -95,4 +95,9 @@ class DeviceTypeController extends Controller
     {
         //
     }
+
+    public function table()
+    {
+        return response()->json(DeviceType::all(), 200);
+    }
 }

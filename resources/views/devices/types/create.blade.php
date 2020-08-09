@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('layouts.main')
 
 @section('content')
 <div class="uk-width-3-4">
@@ -10,17 +10,17 @@
         @endforeach
     @endif
     <h1 class="">Create Device Type</h1>
-    <form action="{{ route('devices.types.store') }}" method="post" class="uk-form">
+    <form action="{{ route('devices.types.store') }}" method="post">
         {{ csrf_field() }}
-        <div class="uk-form-row">
+        <div>
             <label for="name" class="uk-form-label">Name</label>
             <div class="uk-form-controls">
-                <input type="text" name="name" class="uk-width-1-2" value="{{ old('name') }}">
+                <input type="text" name="name" class="uk-input uk-width-1-2" value="{{ old('name') }}">
             </div>
         </div>
-        <div class="uk-form-row">
+        <div class="uk-margin-top">
             <div class="uk-form-controls">
-                <input type="submit" value="Create" class="uk-button">
+                <vk-button html-type="submit" value="create" >Create</vk-button>
             </div>
         </div>
     </form>

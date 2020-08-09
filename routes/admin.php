@@ -11,9 +11,10 @@ Route::group(['middleware' => ['auth.basic', 'throttle:rate_limit,1']], function
         Route::get('/', 'DeviceTypeController@index')->name('devices.types.index');
         Route::get('/{type}/edit', 'DeviceTypeController@edit')->name('devices.types.edit');
         Route::patch('/{type}', 'DeviceTypeController@update')->name('devices.types.update');
+        Route::get('/table.json', 'DeviceTypeController@table')->name('devices.types.table');
     });
 });
 
-Route::namespace('Admin', function() {
-    Route::any('/users/logout', 'AdminController@logout')->name('admin.logout');
+Route::namespace('Admin')->group(function () {
+    Route::any('/admin/logout', 'AdminController@logout')->name('admin.logout');
 });

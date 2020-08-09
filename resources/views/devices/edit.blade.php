@@ -9,22 +9,27 @@
             </div>
         @endforeach
     @endif
-    <h1 class="">Edit Device</h1>
-    <form action="{{ route('devices.update', compact('device')) }}" method="post" class="uk-form" enctype="multipart/form-data">
+    <h1>Edit Device</h1>
+    <form action="{{ route('devices.update', compact('device')) }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
-        <select name="type_id" class="uk-width-1-2">
-            @foreach ($types as $type)
-                <option value="{{ $type->id }}" @if($type->id === @$device->type->id) selected @endif>{{ $type->name }}</option>
-            @endforeach
-        </select>
-        <div class="uk-form-row">
-            <label for="name" class="uk-form-label">Name</label>
+        <div>
+            <label for="type_id" class="uk-form-label">Type</label>
             <div class="uk-form-controls">
-                <input type="text" name="name" class="uk-width-1-2" value="{{ old('name', $device->name) }}">
+                <select name="type_id" class="uk-select uk-width-1-2">
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}" @if($type->id === @$device->type->id) selected @endif>{{ $type->name }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
-        <div class="uk-form-row">
+        <div>
+            <label for="name" class="uk-form-label">Name</label>
+            <div class="uk-form-controls">
+                <input type="text" name="name" class="uk-input uk-width-1-2" value="{{ old('name', $device->name) }}">
+            </div>
+        </div>
+        <div class="uk-margin-top">
             @if (\Storage::disk('public')->exists($device->image_path))
                 @image
                     @slot('image_path')
@@ -34,13 +39,13 @@
                 @endimage
             @endif
         </div>
-        <div class="uk-form-row">
+        <div>
             <label for="image" class="uk-form-label">Image</label>
             <div class="uk-form-controls">
                 <input type="file" name="image" class="uk-width-1-2" value="{{ old('file') }}">
             </div>
         </div>
-        <div class="uk-form-row">
+        <div class="uk-margin-top">
             <div class="uk-form-controls">
                 <input type="submit" name="action" value="update" class="uk-button uk-text-capitalize">
                 <input type="submit" name="action" value="delete" class="uk-button uk-button-danger uk-text-capitalize">

@@ -21,7 +21,7 @@ Route::namespace('Users')->group(function () {
     Route::any('/users/logout', 'LoginController@logout')->name('logout');
     // REGISTER
     Route::get('/users/register', 'RegisterController@showRegistrationForm')->name('register');
-    Route::post('/users/register', 'RegisterController@register');
+    Route::post('/users/register', 'RegisterController@register')->name('users.register');
     // PROFILE
     Route::get('/users/profile/', 'ProfileController@showProfileForm')->name('users.profile');
     Route::get('/users/profile/image', 'ProfileController@showProfileImage')->name('users.profile.image');

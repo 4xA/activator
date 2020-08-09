@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="uk-grid">
+    <vk-grid>
         <div class="uk-width-1-5">
-            <ul class="uk-nav uk-nav-side">
-                <li><a href="{{ route('documentation.index') }}">@lang('Index')</a></li>
-            </ul>
+            <vk-nav>
+                <vk-nav-item href="{{ route('documentation.index') }}" title="@lang('Index')" active></vk-nav-item>
+            </vk-nav>
         </div>
         <div class="uk-width-3-5">
             <article class="uk-article">
@@ -21,6 +21,5 @@
                 </p>
             </article>
         </div>
-        <div class="uk-width-1-3"></div>
-    </div>
+    </vk-grid>
 @endsection

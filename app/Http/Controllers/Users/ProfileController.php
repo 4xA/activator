@@ -34,6 +34,7 @@ class ProfileController extends Controller
 
     public function setLocale (Request $request)
     {
+        sleep(2);
         $locales = implode(',', config('locales'));
         $this->validate($request, [
             'locale' => "required|in:{$locales}"
